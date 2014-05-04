@@ -35,6 +35,7 @@
             this.labelPrompt.Size = new System.Drawing.Size(65, 12);
             this.labelPrompt.TabIndex = 0;
             this.labelPrompt.Text = "對話內容。";
+            this.labelPrompt.Font = System.Drawing.SystemFonts.MessageBoxFont;
             // 
             // textInput
             // 

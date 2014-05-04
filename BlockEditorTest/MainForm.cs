@@ -36,7 +36,10 @@ namespace BlockEditorTest {
             Menu = new MainMenu();
             CreateMenu();
 
-            webView = new WebView("http://internal/res/index.html", new BrowserSettings());
+            BrowserSettings browserSettings = new BrowserSettings();
+            browserSettings.FixedFontFamily = FontFamily.GenericMonospace.Name;
+
+            webView = new WebView("http://internal/res/index.html", browserSettings);
             webView.Dock = DockStyle.Fill;
             webView.RequestHandler = new ManifestResourceHandler();
             webView.LifeSpanHandler = new ExternalLifeSpanHandler();
@@ -126,9 +129,9 @@ namespace BlockEditorTest {
             string checker = "!!CHECK__" + new Random().NextDouble();
             ctrl.jsdata = checker;
             ctrl.xmldata = checker;
-            Thread.Sleep(10);
+            Thread.Sleep(100);
             webView.ExecuteScript("saveFile();");
-            Thread.Sleep(10); // HACK: Sleep a while to wait the result
+            Thread.Sleep(100); // HACK: Sleep a while to wait the result
             if (fileType == FileType.JS) {
                 while (ctrl.jsdata == checker) Thread.Sleep(10);
                 f = ctrl.jsdata;

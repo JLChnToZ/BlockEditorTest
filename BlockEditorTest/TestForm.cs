@@ -20,12 +20,12 @@ namespace BlockEditorTest {
 
         private void initScriptEngine() {
             _engine.SetGlobalFunction("print", new Action<string>((s) => {
-                textOutput.AppendText(s);
+                textOutput.AppendText(FixStringLineWrap(s));
                 textOutput.Select(textOutput.TextLength, 0);
                 textOutput.ScrollToCaret();
             }));
             _engine.SetGlobalFunction("printLine", new Action<string>((s) => {
-                textOutput.AppendText(s + "\r\n");
+                textOutput.AppendText(FixStringLineWrap(s) + "\r\n");
                 textOutput.Select(textOutput.TextLength, 0);
                 textOutput.ScrollToCaret();
             }));
@@ -39,6 +39,10 @@ namespace BlockEditorTest {
                 else
                     return d;
             }));
+        }
+
+        private static string FixStringLineWrap(string src) {
+            return src.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "\r\n");
         }
 
         public void RunScript(string Script) {

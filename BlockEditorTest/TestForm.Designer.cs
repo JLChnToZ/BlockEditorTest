@@ -36,6 +36,9 @@
             this.textOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textOutput.Size = new System.Drawing.Size(384, 265);
             this.textOutput.TabIndex = 0;
+            this.textOutput.BackColor = System.Drawing.Color.FromKnownColor(System.Drawing.KnownColor.Black);
+            this.textOutput.ForeColor = System.Drawing.Color.FromKnownColor(System.Drawing.KnownColor.White);
+            this.textOutput.Font = new System.Drawing.Font(System.Drawing.FontFamily.GenericMonospace, 12F);
             // 
             // TestForm
             // 
