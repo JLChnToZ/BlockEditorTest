@@ -91,8 +91,9 @@ function loadJSFile(content) {
 
 function saveFile() {
   if(!win) return;
-  win.setJSData(JSOnly ? editor.getValue() : Blockly.JavaScript.workspaceToCode());
-  win.setXMLData(JSOnly ? "" : Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace)));
+  win.setData(
+    JSOnly ? editor.getValue() : Blockly.JavaScript.workspaceToCode(),
+    JSOnly ? "" : Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace)));
 }
 
 function run() {

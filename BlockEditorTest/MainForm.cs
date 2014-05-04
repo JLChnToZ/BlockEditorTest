@@ -23,6 +23,8 @@ namespace BlockEditorTest {
         WebView webView;
         FormControlObject ctrl;
 
+        private Action prepared;
+
         public string FilePath { get; set; }
         public FileType fileType { get; set; }
 
@@ -49,6 +51,7 @@ namespace BlockEditorTest {
             this.Controls.Add(webView);
 
             CEF.RegisterJsObject("win", ctrl = new FormControlObject(this));
+            ctrl.OnDataArrive += OnDataArrive;
         }
 
         public MainForm(string FilePath)
@@ -78,9 +81,11 @@ namespace BlockEditorTest {
 
             MenuItem testMenu = new MenuItem("測試 (&T)");
             testMenu.MenuItems.Add("執行 (&R)", (s, e) => {
-                TestForm testing = new TestForm();
-                testing.Show();
-                testing.RunScript(OutputData(FileType.JS));
+                prepareSaveFile(new Action(() => {
+                    TestForm testing = new TestForm();
+                    testing.Show();
+                    testing.RunScript(OutputData(FileType.JS));
+                }));
             });
             Menu.MenuItems.Add(testMenu);
         }
@@ -117,29 +122,19 @@ namespace BlockEditorTest {
         }
 
         void SaveFile() {
-            try {
-                File.WriteAllText(FilePath, OutputData(fileType));
-            } catch (Exception ex) {
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            prepareSaveFile(new Action(() => {
+                try {
+                    File.WriteAllText(FilePath, OutputData(fileType));
+                } catch (Exception ex) {
+                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }));
         }
 
         string OutputData(FileType fileType) {
-            string f;
-            string checker = "!!CHECK__" + new Random().NextDouble();
-            ctrl.jsdata = checker;
-            ctrl.xmldata = checker;
-            Thread.Sleep(100);
-            webView.ExecuteScript("saveFile();");
-            Thread.Sleep(100); // HACK: Sleep a while to wait the result
-            if (fileType == FileType.JS) {
-                while (ctrl.jsdata == checker) Thread.Sleep(10);
-                f = ctrl.jsdata;
-            } else {
-                while (ctrl.xmldata == checker) Thread.Sleep(10);
-                f = ctrl.xmldata;
-            }
-            return f;
+            if (fileType == FileType.JS)
+                return ctrl.jsdata;
+            return ctrl.xmldata;
         }
 
         void SaveAs(object sender, EventArgs e) {
@@ -165,6 +160,11 @@ namespace BlockEditorTest {
             Text = webView.Title;
         }
 
+        void prepareSaveFile(Action prepared) {
+            this.prepared = prepared;
+            webView.ExecuteScript("saveFile();");
+        }
+
         internal void DragWindow() {
             if (InvokeRequired) {
                 Invoke(new Action(DragWindow));
@@ -172,6 +172,13 @@ namespace BlockEditorTest {
             }
             ReleaseCapture();
             SendMessage(Handle, 0xA1, 0x2, 0);
+        }
+
+        void OnDataArrive(object sender, EventArgs e) {
+            if (InvokeRequired)
+                Invoke(prepared);
+            else
+                prepared();
         }
     }
 }

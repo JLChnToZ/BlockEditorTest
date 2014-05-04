@@ -4,6 +4,8 @@ using System.Windows.Forms;
 namespace BlockEditorTest {
     class FormControlObject {
 
+        public EventHandler OnDataArrive;
+
         private MainForm parent;
 
         public string jsdata = "", xmldata = "";
@@ -16,12 +18,11 @@ namespace BlockEditorTest {
             parent.DragWindow();
         }
 
-        public void setJSData(string data) {
-            jsdata = data;
-        }
-
-        public void setXMLData(string data) {
-            xmldata = data;
+        public void setData(string JSData, string XMLData) {
+            jsdata = JSData;
+            xmldata = XMLData;
+            if (OnDataArrive != null)
+                OnDataArrive(this, new EventArgs());
         }
     }
 }
