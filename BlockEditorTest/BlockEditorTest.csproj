@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3D85D0DA-12A0-411E-B494-5152C53D683A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlockEditorTest</RootNamespace>
+    <AssemblyName>BlockEditorTest</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CefSharp, Version=1.25.7.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\reference\CefSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.WinForms, Version=1.25.7.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\reference\CefSharp.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic">
+      <HintPath>..\reference\Jurassic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExternalLifeSpanHandler.cs" />
+    <Compile Include="FormControlObject.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManifestResourceHandler.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="PromptDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PromptDialog.Designer.cs">
+      <DependentUpon>PromptDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebViewDialogHandler.cs" />
+    <EmbeddedResource Include="PromptDialog.resx">
+      <DependentUpon>PromptDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="locales\en-US.pak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="locales\ja.pak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="locales\ko.pak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="locales\zh-CN.pak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="locales\zh-TW.pak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="res\res\media\click.ogg" />
+    <EmbeddedResource Include="res\res\media\delete.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="res\index.html" />
+    <EmbeddedResource Include="res\js\ace\ace.js" />
+    <EmbeddedResource Include="res\js\ace\ext-chromevox.js" />
+    <EmbeddedResource Include="res\js\ace\ext-elastic_tabstops_lite.js" />
+    <EmbeddedResource Include="res\js\ace\ext-emmet.js" />
+    <EmbeddedResource Include="res\js\ace\ext-error_marker.js" />
+    <EmbeddedResource Include="res\js\ace\ext-keybinding_menu.js" />
+    <EmbeddedResource Include="res\js\ace\ext-language_tools.js" />
+    <EmbeddedResource Include="res\js\ace\ext-modelist.js" />
+    <EmbeddedResource Include="res\js\ace\ext-old_ie.js" />
+    <EmbeddedResource Include="res\js\ace\ext-searchbox.js" />
+    <EmbeddedResource Include="res\js\ace\ext-settings_menu.js" />
+    <EmbeddedResource Include="res\js\ace\ext-spellcheck.js" />
+    <EmbeddedResource Include="res\js\ace\ext-split.js" />
+    <EmbeddedResource Include="res\js\ace\ext-static_highlight.js" />
+    <EmbeddedResource Include="res\js\ace\ext-statusbar.js" />
+    <EmbeddedResource Include="res\js\ace\ext-textarea.js" />
+    <EmbeddedResource Include="res\js\ace\ext-themelist.js" />
+    <EmbeddedResource Include="res\js\ace\ext-whitespace.js" />
+    <EmbeddedResource Include="res\js\ace\keybinding-emacs.js" />
+    <EmbeddedResource Include="res\js\ace\keybinding-vim.js" />
+    <EmbeddedResource Include="res\js\ace\mode-abap.js" />
+    <EmbeddedResource Include="res\js\ace\mode-actionscript.js" />
+    <EmbeddedResource Include="res\js\ace\mode-ada.js" />
+    <EmbeddedResource Include="res\js\ace\mode-apache_conf.js" />
+    <EmbeddedResource Include="res\js\ace\mode-asciidoc.js" />
+    <EmbeddedResource Include="res\js\ace\mode-assembly_x86.js" />
+    <EmbeddedResource Include="res\js\ace\mode-autohotkey.js" />
+    <EmbeddedResource Include="res\js\ace\mode-batchfile.js" />
+    <EmbeddedResource Include="res\js\ace\mode-c9search.js" />
+    <EmbeddedResource Include="res\js\ace\mode-cirru.js" />
+    <EmbeddedResource Include="res\js\ace\mode-clojure.js" />
+    <EmbeddedResource Include="res\js\ace\mode-cobol.js" />
+    <EmbeddedResource Include="res\js\ace\mode-coffee.js" />
+    <EmbeddedResource Include="res\js\ace\mode-coldfusion.js" />
+    <EmbeddedResource Include="res\js\ace\mode-csharp.js" />
+    <EmbeddedResource Include="res\js\ace\mode-css.js" />
+    <EmbeddedResource Include="res\js\ace\mode-curly.js" />
+    <EmbeddedResource Include="res\js\ace\mode-c_cpp.js" />
+    <EmbeddedResource Include="res\js\ace\mode-d.js" />
+    <EmbeddedResource Include="res\js\ace\mode-dart.js" />
+    <EmbeddedResource Include="res\js\ace\mode-diff.js" />
+    <EmbeddedResource Include="res\js\ace\mode-django.js" />
+    <EmbeddedResource Include="res\js\ace\mode-dot.js" />
+    <EmbeddedResource Include="res\js\ace\mode-ejs.js" />
+    <EmbeddedResource Include="res\js\ace\mode-erlang.js" />
+    <EmbeddedResource Include="res\js\ace\mode-forth.js" />
+    <EmbeddedResource Include="res\js\ace\mode-ftl.js" />
+    <EmbeddedResource Include="res\js\ace\mode-gherkin.js" />
+    <EmbeddedResource Include="res\js\ace\mode-glsl.js" />
+    <EmbeddedResource Include="res\js\ace\mode-golang.js" />
+    <EmbeddedResource Include="res\js\ace\mode-groovy.js" />
+    <EmbeddedResource Include="res\js\ace\mode-haml.js" />
+    <EmbeddedResource Include="res\js\ace\mode-handlebars.js" />
+    <EmbeddedResource Include="res\js\ace\mode-haskell.js" />
+    <EmbeddedResource Include="res\js\ace\mode-haxe.js" />
+    <EmbeddedResource Include="res\js\ace\mode-html.js" />
+    <EmbeddedResource Include="res\js\ace\mode-html_completions.js" />
+    <EmbeddedResource Include="res\js\ace\mode-html_ruby.js" />
+    <EmbeddedResource Include="res\js\ace\mode-ini.js" />
+    <EmbeddedResource Include="res\js\ace\mode-jack.js" />
+    <EmbeddedResource Include="res\js\ace\mode-jade.js" />
+    <EmbeddedResource Include="res\js\ace\mode-java.js" />
+    <EmbeddedResource Include="res\js\ace\mode-javascript.js" />
+    <EmbeddedResource Include="res\js\ace\mode-json.js" />
+    <EmbeddedResource Include="res\js\ace\mode-jsoniq.js" />
+    <EmbeddedResource Include="res\js\ace\mode-jsp.js" />
+    <EmbeddedResource Include="res\js\ace\mode-jsx.js" />
+    <EmbeddedResource Include="res\js\ace\mode-julia.js" />
+    <EmbeddedResource Include="res\js\ace\mode-latex.js" />
+    <EmbeddedResource Include="res\js\ace\mode-less.js" />
+    <EmbeddedResource Include="res\js\ace\mode-liquid.js" />
+    <EmbeddedResource Include="res\js\ace\mode-lisp.js" />
+    <EmbeddedResource Include="res\js\ace\mode-livescript.js" />
+    <EmbeddedResource Include="res\js\ace\mode-logiql.js" />
+    <EmbeddedResource Include="res\js\ace\mode-lsl.js" />
+    <EmbeddedResource Include="res\js\ace\mode-lua.js" />
+    <EmbeddedResource Include="res\js\ace\mode-luapage.js" />
+    <EmbeddedResource Include="res\js\ace\mode-lucene.js" />
+    <EmbeddedResource Include="res\js\ace\mode-makefile.js" />
+    <EmbeddedResource Include="res\js\ace\mode-markdown.js" />
+    <EmbeddedResource Include="res\js\ace\mode-matlab.js" />
+    <EmbeddedResource Include="res\js\ace\mode-mel.js" />
+    <EmbeddedResource Include="res\js\ace\mode-mushcode.js" />
+    <EmbeddedResource Include="res\js\ace\mode-mushcode_high_rules.js" />
+    <EmbeddedResource Include="res\js\ace\mode-mysql.js" />
+    <EmbeddedResource Include="res\js\ace\mode-nix.js" />
+    <EmbeddedResource Include="res\js\ace\mode-objectivec.js" />
+    <EmbeddedResource Include="res\js\ace\mode-ocaml.js" />
+    <EmbeddedResource Include="res\js\ace\mode-pascal.js" />
+    <EmbeddedResource Include="res\js\ace\mode-perl.js" />
+    <EmbeddedResource Include="res\js\ace\mode-pgsql.js" />
+    <EmbeddedResource Include="res\js\ace\mode-php.js" />
+    <EmbeddedResource Include="res\js\ace\mode-plain_text.js" />
+    <EmbeddedResource Include="res\js\ace\mode-powershell.js" />
+    <EmbeddedResource Include="res\js\ace\mode-prolog.js" />
+    <EmbeddedResource Include="res\js\ace\mode-properties.js" />
+    <EmbeddedResource Include="res\js\ace\mode-protobuf.js" />
+    <EmbeddedResource Include="res\js\ace\mode-python.js" />
+    <EmbeddedResource Include="res\js\ace\mode-r.js" />
+    <EmbeddedResource Include="res\js\ace\mode-rdoc.js" />
+    <EmbeddedResource Include="res\js\ace\mode-rhtml.js" />
+    <EmbeddedResource Include="res\js\ace\mode-ruby.js" />
+    <EmbeddedResource Include="res\js\ace\mode-rust.js" />
+    <EmbeddedResource Include="res\js\ace\mode-sass.js" />
+    <EmbeddedResource Include="res\js\ace\mode-scad.js" />
+    <EmbeddedResource Include="res\js\ace\mode-scala.js" />
+    <EmbeddedResource Include="res\js\ace\mode-scheme.js" />
+    <EmbeddedResource Include="res\js\ace\mode-scss.js" />
+    <EmbeddedResource Include="res\js\ace\mode-sh.js" />
+    <EmbeddedResource Include="res\js\ace\mode-sjs.js" />
+    <EmbeddedResource Include="res\js\ace\mode-smarty.js" />
+    <EmbeddedResource Include="res\js\ace\mode-snippets.js" />
+    <EmbeddedResource Include="res\js\ace\mode-soy_template.js" />
+    <EmbeddedResource Include="res\js\ace\mode-space.js" />
+    <EmbeddedResource Include="res\js\ace\mode-sql.js" />
+    <EmbeddedResource Include="res\js\ace\mode-stylus.js" />
+    <EmbeddedResource Include="res\js\ace\mode-svg.js" />
+    <EmbeddedResource Include="res\js\ace\mode-tcl.js" />
+    <EmbeddedResource Include="res\js\ace\mode-tex.js" />
+    <EmbeddedResource Include="res\js\ace\mode-text.js" />
+    <EmbeddedResource Include="res\js\ace\mode-textile.js" />
+    <EmbeddedResource Include="res\js\ace\mode-toml.js" />
+    <EmbeddedResource Include="res\js\ace\mode-twig.js" />
+    <EmbeddedResource Include="res\js\ace\mode-typescript.js" />
+    <EmbeddedResource Include="res\js\ace\mode-vbscript.js" />
+    <EmbeddedResource Include="res\js\ace\mode-velocity.js" />
+    <EmbeddedResource Include="res\js\ace\mode-verilog.js" />
+    <EmbeddedResource Include="res\js\ace\mode-vhdl.js" />
+    <EmbeddedResource Include="res\js\ace\mode-xml.js" />
+    <EmbeddedResource Include="res\js\ace\mode-xquery.js" />
+    <EmbeddedResource Include="res\js\ace\mode-yaml.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\abap.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\actionscript.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\ada.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\apache_conf.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\asciidoc.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\assembly_x86.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\autohotkey.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\batchfile.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\c9search.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\cirru.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\clojure.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\cobol.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\coffee.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\coldfusion.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\csharp.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\css.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\curly.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\c_cpp.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\d.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\dart.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\diff.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\django.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\dot.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\ejs.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\erlang.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\forth.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\ftl.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\gherkin.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\glsl.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\golang.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\groovy.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\haml.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\handlebars.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\haskell.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\haxe.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\html.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\html_completions.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\html_ruby.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\ini.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\jack.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\jade.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\java.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\javascript.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\json.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\jsoniq.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\jsp.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\jsx.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\julia.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\latex.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\less.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\liquid.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\lisp.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\livescript.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\logiql.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\lsl.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\lua.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\luapage.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\lucene.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\makefile.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\markdown.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\matlab.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\mel.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\mushcode.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\mushcode_high_rules.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\mysql.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\nix.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\objectivec.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\ocaml.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\pascal.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\perl.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\pgsql.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\php.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\plain_text.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\powershell.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\prolog.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\properties.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\protobuf.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\python.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\r.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\rdoc.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\rhtml.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\ruby.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\rust.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\sass.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\scad.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\scala.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\scheme.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\scss.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\sh.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\sjs.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\smarty.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\snippets.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\soy_template.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\space.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\sql.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\stylus.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\svg.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\tcl.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\tex.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\text.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\textile.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\toml.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\twig.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\typescript.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\vbscript.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\velocity.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\verilog.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\vhdl.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\xml.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\xquery.js" />
+    <EmbeddedResource Include="res\js\ace\snippets\yaml.js" />
+    <EmbeddedResource Include="res\js\ace\theme-ambiance.js" />
+    <EmbeddedResource Include="res\js\ace\theme-chaos.js" />
+    <EmbeddedResource Include="res\js\ace\theme-chrome.js" />
+    <EmbeddedResource Include="res\js\ace\theme-clouds.js" />
+    <EmbeddedResource Include="res\js\ace\theme-clouds_midnight.js" />
+    <EmbeddedResource Include="res\js\ace\theme-cobalt.js" />
+    <EmbeddedResource Include="res\js\ace\theme-crimson_editor.js" />
+    <EmbeddedResource Include="res\js\ace\theme-dawn.js" />
+    <EmbeddedResource Include="res\js\ace\theme-dreamweaver.js" />
+    <EmbeddedResource Include="res\js\ace\theme-eclipse.js" />
+    <EmbeddedResource Include="res\js\ace\theme-github.js" />
+    <EmbeddedResource Include="res\js\ace\theme-idle_fingers.js" />
+    <EmbeddedResource Include="res\js\ace\theme-katzenmilch.js" />
+    <EmbeddedResource Include="res\js\ace\theme-kr.js" />
+    <EmbeddedResource Include="res\js\ace\theme-kuroir.js" />
+    <EmbeddedResource Include="res\js\ace\theme-merbivore.js" />
+    <EmbeddedResource Include="res\js\ace\theme-merbivore_soft.js" />
+    <EmbeddedResource Include="res\js\ace\theme-monokai.js" />
+    <EmbeddedResource Include="res\js\ace\theme-mono_industrial.js" />
+    <EmbeddedResource Include="res\js\ace\theme-pastel_on_dark.js" />
+    <EmbeddedResource Include="res\js\ace\theme-solarized_dark.js" />
+    <EmbeddedResource Include="res\js\ace\theme-solarized_light.js" />
+    <EmbeddedResource Include="res\js\ace\theme-terminal.js" />
+    <EmbeddedResource Include="res\js\ace\theme-textmate.js" />
+    <EmbeddedResource Include="res\js\ace\theme-tomorrow.js" />
+    <EmbeddedResource Include="res\js\ace\theme-tomorrow_night.js" />
+    <EmbeddedResource Include="res\js\ace\theme-tomorrow_night_blue.js" />
+    <EmbeddedResource Include="res\js\ace\theme-tomorrow_night_bright.js" />
+    <EmbeddedResource Include="res\js\ace\theme-tomorrow_night_eighties.js" />
+    <EmbeddedResource Include="res\js\ace\theme-twilight.js" />
+    <EmbeddedResource Include="res\js\ace\theme-vibrant_ink.js" />
+    <EmbeddedResource Include="res\js\ace\theme-xcode.js" />
+    <EmbeddedResource Include="res\js\ace\worker-coffee.js" />
+    <EmbeddedResource Include="res\js\ace\worker-css.js" />
+    <EmbeddedResource Include="res\js\ace\worker-html.js" />
+    <EmbeddedResource Include="res\js\ace\worker-javascript.js" />
+    <EmbeddedResource Include="res\js\ace\worker-json.js" />
+    <EmbeddedResource Include="res\js\ace\worker-lua.js" />
+    <EmbeddedResource Include="res\js\ace\worker-php.js" />
+    <EmbeddedResource Include="res\js\ace\worker-xquery.js" />
+    <EmbeddedResource Include="res\js\blockly\blocks.js" />
+    <EmbeddedResource Include="res\js\blockly\javascript.js" />
+    <EmbeddedResource Include="res\js\blockly\lang\en.js" />
+    <EmbeddedResource Include="res\js\blockly\lang\ja.js" />
+    <EmbeddedResource Include="res\js\blockly\lang\ko.js" />
+    <EmbeddedResource Include="res\js\blockly\lang\zh-hans.js" />
+    <EmbeddedResource Include="res\js\blockly\lang\zh-hant.js" />
+    <EmbeddedResource Include="res\js\blockly\main.js" />
+    <EmbeddedResource Include="res\js\jquery-ui.js" />
+    <EmbeddedResource Include="res\js\jquery.js" />
+    <EmbeddedResource Include="res\js\lab.js" />
+    <EmbeddedResource Include="res\js\main.js" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-bg_flat_10_000000_40x100.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-icons_222222_256x240.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-icons_228ef1_256x240.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-icons_ef8c08_256x240.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-icons_ffd27a_256x240.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\images\ui-icons_ffffff_256x240.png" />
+    <EmbeddedResource Include="res\res\jquery_theme\ui.css" />
+    <EmbeddedResource Include="res\res\media\1x1.gif" />
+    <EmbeddedResource Include="res\res\media\anon.jpeg" />
+    <EmbeddedResource Include="res\res\media\click.mp3" />
+    <EmbeddedResource Include="res\res\media\click.wav" />
+    <EmbeddedResource Include="res\res\media\delete.mp3" />
+    <EmbeddedResource Include="res\res\media\delete.wav" />
+    <EmbeddedResource Include="res\res\media\handclosed.cur" />
+    <EmbeddedResource Include="res\res\media\handopen.cur" />
+    <EmbeddedResource Include="res\res\media\progress.gif" />
+    <EmbeddedResource Include="res\res\media\quote0.png" />
+    <EmbeddedResource Include="res\res\media\quote1.png" />
+    <EmbeddedResource Include="res\res\media\sprites.png" />
+    <EmbeddedResource Include="res\res\media\trashbody.png" />
+    <EmbeddedResource Include="res\res\media\trashlid.png" />
+    <EmbeddedResource Include="res\res\media\tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="avcodec-54.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="avformat-54.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="avutil-51.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="icudt.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="libcef.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="libEGL.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="libGLESv2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

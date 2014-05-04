@@ -1,0 +1,209 @@
+<HTML>
+<Head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/> 
+<Title>方塊編程測試</Title>
+<script type="text/javascript" src="js/lab.js"></script>
+<script type="text/javascript">
+$LAB
+  .script("js/jquery.js").wait()
+  .script("js/jquery-ui.js")
+  .script("js/blockly/main.js").wait()
+  .script("js/blockly/blocks.js")
+  .script("js/blockly/javascript.js")
+  .script("js/blockly/lang/zh-hant.js")
+  .script("js/ace/ace.js").wait()
+  .script("js/main.js");
+</script>
+<style type="text/css">
+@import url("res/jquery_theme/ui.css");
+body {
+  overflow: hidden;
+}
+body, .ui-tabs .ui-tabs-nav li.ui-tabs-active a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-tabs-loading a {
+  cursor: default;
+}
+* {
+  font-size: 10pt;
+}
+*:not([contenteditable]):not(textarea, input) {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#scriptedit, #blockedit {
+  width: 100%;
+  height: 90%;
+  white-space: pre;
+}
+.ui-tabs .ui-tabs-panel {
+  padding: 0px;
+}
+#tablist {
+  display: none;
+}
+</style>
+</Head>
+<Body>
+<div id="tablist">
+<ul>
+<li><a href="#blockedit-tab">簡單模式</a></li>
+<li><a href="#scriptedit-tab">進階模式</a></li>
+</ul>
+<div id="blockedit-tab"><div id="blockedit"></div></div>
+<div id="scriptedit-tab"><div id="scriptedit"></div></div>
+</div>
+</div>
+<xml id="toolbox" style="display: none">
+  <category name="邏輯">
+    <block type="controls_if"></block>
+    <block type="logic_compare"></block>
+    <block type="logic_operation"></block>
+    <block type="logic_negate"></block>
+    <block type="logic_boolean"></block>
+    <block type="logic_null"></block>
+    <block type="logic_ternary"></block>
+  </category>
+  <category name="迴圈">
+    <block type="controls_repeat_ext">
+      <value name="TIMES">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+    </block>
+    <block type="controls_whileUntil"></block>
+    <block type="controls_for">
+      <value name="FROM">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="TO">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+      <value name="BY">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="controls_forEach"></block>
+    <block type="controls_flow_statements"></block>
+  </category>
+  <category name="數學">
+    <block type="math_number"></block>
+    <block type="math_arithmetic"></block>
+    <block type="math_single"></block>
+    <block type="math_trig"></block>
+    <block type="math_constant"></block>
+    <block type="math_number_property"></block>
+    <block type="math_change">
+      <value name="DELTA">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="math_round"></block>
+    <block type="math_on_list"></block>
+    <block type="math_modulo"></block>
+    <block type="math_constrain">
+      <value name="LOW">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="HIGH">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+    </block>
+    <block type="math_random_int">
+      <value name="FROM">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="TO">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+    </block>
+    <block type="math_random_float"></block>
+  </category>
+  <category name="字串">
+    <block type="text"></block>
+    <block type="text_join"></block>
+    <block type="text_append">
+      <value name="TEXT">
+        <block type="text"></block>
+      </value>
+    </block>
+    <block type="text_length"></block>
+    <block type="text_isEmpty"></block>
+    <block type="text_indexOf">
+      <value name="VALUE">
+        <block type="variables_get"></block>
+      </value>
+    </block>
+    <block type="text_charAt">
+      <value name="VALUE">
+        <block type="variables_get"></block>
+      </value>
+    </block>
+    <block type="text_getSubstring">
+      <value name="STRING">
+        <block type="variables_get"></block>
+      </value>
+    </block>
+    <block type="text_changeCase"></block>
+    <block type="text_trim"></block>
+    <block type="text_print"></block>
+    <block type="text_prompt"></block>
+  </category>
+  <category name="列表">
+    <block type="lists_create_empty"></block>
+    <block type="lists_create_with"></block>
+    <block type="lists_repeat">
+      <value name="NUM">
+        <block type="math_number">
+          <field name="NUM">5</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_length"></block>
+    <block type="lists_isEmpty"></block>
+    <block type="lists_indexOf">
+      <value name="VALUE">
+        <block type="variables_get"></block>
+      </value>
+    </block>
+    <block type="lists_getIndex">
+      <value name="VALUE">
+        <block type="variables_get"></block>
+      </value>
+    </block>
+    <block type="lists_setIndex">
+      <value name="LIST">
+        <block type="variables_get"></block>
+      </value>
+    </block>
+    <block type="lists_getSublist">
+      <value name="LIST">
+        <block type="variables_get"></block>
+      </value>
+    </block>
+  </category>
+  <category name="變量" custom="VARIABLE"></category>
+  <category name="流程" custom="PROCEDURE"></category>
+</xml>
+</Body>
+</HTML>
