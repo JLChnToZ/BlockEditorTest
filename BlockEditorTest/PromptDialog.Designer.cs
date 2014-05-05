@@ -30,22 +30,22 @@
             // labelPrompt
             // 
             this.labelPrompt.AutoSize = true;
+            this.labelPrompt.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
             this.labelPrompt.Location = new System.Drawing.Point(12, 9);
             this.labelPrompt.Name = "labelPrompt";
-            this.labelPrompt.Size = new System.Drawing.Size(65, 12);
+            this.labelPrompt.Size = new System.Drawing.Size(68, 16);
             this.labelPrompt.TabIndex = 0;
             this.labelPrompt.Text = "對話內容。";
-            this.labelPrompt.Font = System.Drawing.SystemFonts.MessageBoxFont;
             // 
             // textInput
             // 
             this.textInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textInput.Location = new System.Drawing.Point(14, 131);
+            this.textInput.MaxLength = 2147483647;
             this.textInput.Name = "textInput";
             this.textInput.Size = new System.Drawing.Size(358, 22);
             this.textInput.TabIndex = 1;
-            this.textInput.MaxLength = int.MaxValue;
             this.textInput.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyPress);
             // 
             // PromptDialog
@@ -64,6 +64,7 @@
             this.Name = "PromptDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "對話";
             this.ResumeLayout(false);
             this.PerformLayout();
