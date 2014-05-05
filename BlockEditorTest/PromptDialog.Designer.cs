@@ -30,7 +30,7 @@
             // labelPrompt
             // 
             this.labelPrompt.AutoSize = true;
-            this.labelPrompt.Font = new System.Drawing.Font("Arial Unicode MS", 9F);
+            this.labelPrompt.Font = System.Drawing.SystemFonts.MessageBoxFont;
             this.labelPrompt.Location = new System.Drawing.Point(12, 9);
             this.labelPrompt.Name = "labelPrompt";
             this.labelPrompt.Size = new System.Drawing.Size(68, 16);
@@ -42,7 +42,7 @@
             this.textInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textInput.Location = new System.Drawing.Point(14, 131);
-            this.textInput.MaxLength = 2147483647;
+            this.textInput.MaxLength = int.MaxValue;
             this.textInput.Name = "textInput";
             this.textInput.Size = new System.Drawing.Size(358, 22);
             this.textInput.TabIndex = 1;
