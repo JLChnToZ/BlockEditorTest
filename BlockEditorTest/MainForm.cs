@@ -96,7 +96,7 @@ namespace BlockEditorTest {
 
         void OpenFile() {
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "拼圖格式 (*.blockly)|*.xml|JavaScript 腳本 (*.js)|*.js|所有檔案 (*.*)|*.*";
+            dlg.Filter = "拼圖格式 (*.blockly;*.xml)|*.blockly;*.xml|JavaScript 腳本 (*.js)|*.js|所有檔案 (*.*)|*.*";
             dlg.FileName = FilePath;
             if (dlg.ShowDialog() == DialogResult.OK) {
                 try {
@@ -139,7 +139,7 @@ namespace BlockEditorTest {
 
         void SaveAs(object sender, EventArgs e) {
             SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Filter = "拼圖格式 (*.blockly)|*.xml|JavaScript 腳本 (*.js)|*.js|所有檔案 (*.*)|*.*";
+            dlg.Filter = "拼圖格式 (*.blockly;*.xml)|*.blockly;*.xml|JavaScript 腳本 (*.js)|*.js|所有檔案 (*.*)|*.*";
             dlg.FileName = FilePath;
             if (dlg.ShowDialog() == DialogResult.OK) {
                 FilePath = dlg.FileName;
