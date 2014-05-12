@@ -40,6 +40,8 @@ namespace BlockEditorTest {
 
             BrowserSettings browserSettings = new BrowserSettings();
             browserSettings.FixedFontFamily = FontFamily.GenericMonospace.Name;
+            browserSettings.DefaultFontSize = 12;
+            browserSettings.DefaultFixedFontSize = 8;
 
             webView = new WebView("http://internal/res/index.html", browserSettings);
             webView.Dock = DockStyle.Fill;

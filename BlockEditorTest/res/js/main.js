@@ -38,6 +38,7 @@ $(function() {
   editor.setTheme("ace/theme/tomorrow");
   editor.setShowPrintMargin(false);
   session.setUseSoftTabs(true);
+  session.setTabSize(2);
   session.setUseWrapMode(true);
   session.setMode("ace/mode/javascript");
   session.on("change", function(e) {
@@ -46,7 +47,6 @@ $(function() {
       JSOnly = true;
     }
   });
-  $("#scriptedit").css("font-size", "14pt");
   $(document).on("contextmenu", function(e) {
     if(!$(e.target).not(".ace_gutter *").is("#scriptedit *, input, textarea"))
       return false;
