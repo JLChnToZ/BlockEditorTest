@@ -19,16 +19,8 @@ namespace BlockEditorTest {
         }
 
         private void initScriptEngine() {
-            _engine.SetGlobalFunction("print", new Action<string>((s) => {
-                textOutput.AppendText(FixStringLineWrap(s));
-                textOutput.Select(textOutput.TextLength, 0);
-                textOutput.ScrollToCaret();
-            }));
-            _engine.SetGlobalFunction("printLine", new Action<string>((s) => {
-                textOutput.AppendText(FixStringLineWrap(s) + "\r\n");
-                textOutput.Select(textOutput.TextLength, 0);
-                textOutput.ScrollToCaret();
-            }));
+            _engine.SetGlobalFunction("print", new Action<string>((s) => outputString(FixStringLineWrap(s))));
+            _engine.SetGlobalFunction("printLine", new Action<string>((s) => outputString(FixStringLineWrap(s) + "\r\n")));
             _engine.SetGlobalFunction("prompt", new Func<string, string, string>((m, d) => {
                 PromptDialog dlg = new PromptDialog();
                 dlg.PromptText = m;
@@ -41,12 +33,24 @@ namespace BlockEditorTest {
             }));
         }
 
+        private void outputString(string s) {
+            textOutput.AppendText(s);
+            textOutput.Select(textOutput.TextLength, 0);
+            textOutput.ScrollToCaret();
+        }
+
         private static string FixStringLineWrap(string src) {
             return src.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", "\r\n");
         }
 
         public void RunScript(string Script) {
-            _engine.Execute(Script);
+            try {
+                _engine.Execute(Script);
+            } catch (JavaScriptException ex) {
+                outputString(string.Format("\r\n於第{1}行發生錯誤：{0}", ex.Message, ex.LineNumber));
+            } finally {
+                outputString("\r\n程式結束。\r\n");
+            }
         }
     }
 }
