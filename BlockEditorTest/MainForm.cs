@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
@@ -15,10 +14,6 @@ namespace BlockEditorTest {
     }
 
     class MainForm : Form {
-        [DllImportAttribute("user32.dll")]
-        private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        private static extern bool ReleaseCapture();
 
         WebView webView;
         FormControlObject ctrl;
@@ -109,7 +104,7 @@ namespace BlockEditorTest {
                         fileType = FileType.XML;
                     LoadFile();
                 } catch (Exception ex) {
-                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    showErrorDialog(ex.Message);
                 }
             }
         }
@@ -128,7 +123,7 @@ namespace BlockEditorTest {
                 try {
                     File.WriteAllText(FilePath, OutputData(fileType));
                 } catch (Exception ex) {
-                    MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    showErrorDialog(ex.Message);
                 }
             }));
         }
@@ -167,20 +162,20 @@ namespace BlockEditorTest {
             webView.ExecuteScript("saveFile();");
         }
 
-        internal void DragWindow() {
-            if (InvokeRequired) {
-                Invoke(new Action(DragWindow));
-                return;
-            }
-            ReleaseCapture();
-            SendMessage(Handle, 0xA1, 0x2, 0);
-        }
-
         void OnDataArrive(object sender, EventArgs e) {
             if (InvokeRequired)
                 Invoke(prepared);
             else
                 prepared();
+        }
+
+        void showErrorDialog(string message) {
+            PromptDialog dlg = new PromptDialog();
+            dlg.PromptText = message;
+            dlg.isOKCancel = false;
+            dlg.isPrompt = false;
+            dlg.messageBoxIcon = MessageBoxIcon.Error;
+            dlg.ShowDialog(this);
         }
     }
 }

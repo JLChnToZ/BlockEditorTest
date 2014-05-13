@@ -25,6 +25,7 @@ namespace BlockEditorTest {
                 PromptDialog dlg = new PromptDialog();
                 dlg.PromptText = m;
                 dlg.Value = d;
+                dlg.messageBoxIcon = MessageBoxIcon.Question;
                 return dlg.ShowDialog(this) == DialogResult.OK ? dlg.Value : d;
             }));
         }

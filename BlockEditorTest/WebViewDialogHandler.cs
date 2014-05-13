@@ -15,8 +15,15 @@ namespace BlockEditorTest {
         public bool OnJSAlert(IWebBrowser browser, string url, string message) {
             if (Parent.InvokeRequired)
                 Parent.Invoke(new Func<IWebBrowser, string, string, bool>(OnJSAlert), browser, url, message);
-            else
-                MessageBox.Show(Parent, message, browser.Title);
+            else {
+                PromptDialog dlg = new PromptDialog();
+                dlg.Text = browser.Title;
+                dlg.PromptText = message;
+                dlg.isPrompt = false;
+                dlg.isOKCancel = false;
+                dlg.messageBoxIcon = MessageBoxIcon.Exclamation;
+                dlg.ShowDialog(Parent);
+            }
             return true;
         }
 
@@ -29,7 +36,13 @@ namespace BlockEditorTest {
         }
 
         private bool OnJSConfirm(IWebBrowser browser, string message) {
-            return MessageBox.Show(Parent, message, browser.Title, MessageBoxButtons.OKCancel) == DialogResult.OK;
+            PromptDialog dlg = new PromptDialog();
+            dlg.Text = browser.Title;
+            dlg.PromptText = message;
+            dlg.isPrompt = false;
+            dlg.messageBoxIcon = MessageBoxIcon.Question;
+            bool result = dlg.ShowDialog(Parent) == DialogResult.OK;
+            return result;
         }
 
         public unsafe bool OnJSPrompt(IWebBrowser browser, string url, string message, string defaultValue, bool* retval, ref string result) {
@@ -48,6 +61,7 @@ namespace BlockEditorTest {
             dlg.Text = browser.Title;
             dlg.PromptText = message;
             dlg.Value = PromptResult;
+            dlg.messageBoxIcon = MessageBoxIcon.Question;
             bool result = dlg.ShowDialog(Parent) == DialogResult.OK;
             if (result) PromptResult = dlg.Value;
             return result;
