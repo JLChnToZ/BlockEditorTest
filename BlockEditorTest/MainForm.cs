@@ -18,7 +18,9 @@ namespace BlockEditorTest {
         WebView webView;
         FormControlObject ctrl;
 
-        private Action prepared;
+        bool applyTurbo = false;
+
+        Action prepared;
 
         public string FilePath { get; set; }
         public FileType fileType { get; set; }
@@ -81,9 +83,11 @@ namespace BlockEditorTest {
                 prepareSaveFile(new Action(() => {
                     TestForm testing = new TestForm();
                     testing.Show();
+                    testing.TurboMode = applyTurbo;
                     testing.RunScript(OutputData(FileType.JS));
                 }));
             });
+            testMenu.MenuItems.Add("加速模式 (&T)", (s, e) => ((MenuItem)s).Checked = applyTurbo = !((MenuItem)s).Checked);
             Menu.MenuItems.Add(testMenu);
         }
 

@@ -31,12 +31,10 @@
             this.textOutput.BackColor = System.Drawing.Color.Black;
             this.textOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textOutput.Font = new System.Drawing.Font(System.Drawing.FontFamily.GenericMonospace, 12F);
             this.textOutput.ForeColor = System.Drawing.Color.White;
             this.textOutput.Location = new System.Drawing.Point(0, 0);
             this.textOutput.Multiline = true;
             this.textOutput.Name = "textOutput";
-            this.textOutput.MaxLength = int.MaxValue;
             this.textOutput.ReadOnly = true;
             this.textOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textOutput.Size = new System.Drawing.Size(384, 265);
