@@ -61,7 +61,16 @@ namespace BlockEditorTest {
         }
         
         /// <summary>
-        ///   查詢類似 Blockly XML (*.blockly;*.xml)|*.blockly;*.xml|JavaScript (*.js)|*.js|すべてのファイル (*.*)|*.* 的當地語系化字串。
+        ///   查詢類似 About Block Editor Test 的當地語系化字串。
+        /// </summary>
+        internal static string f_about {
+            get {
+                return ResourceManager.GetString("f_about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 Blockly XML (*.blockly;*.xml)|*.blockly;*.xml|JavaScript (*.js)|*.js|All Files (*.*)|*.* 的當地語系化字串。
         /// </summary>
         internal static string f_filetypes {
             get {
@@ -71,7 +80,7 @@ namespace BlockEditorTest {
         
         /// <summary>
         ///   查詢類似 
-        ///プログラムは終了します。
+        ///Program Ends.
         /// 的當地語系化字串。
         /// </summary>
         internal static string f_run_ends {
@@ -82,7 +91,7 @@ namespace BlockEditorTest {
         
         /// <summary>
         ///   查詢類似 
-        ///{1}行目のエラー：{0} 的當地語系化字串。
+        ///Error at line {1}: {0} 的當地語系化字串。
         /// </summary>
         internal static string f_run_error {
             get {
@@ -91,7 +100,7 @@ namespace BlockEditorTest {
         }
         
         /// <summary>
-        ///   查詢類似 テスト実行 的當地語系化字串。
+        ///   查詢類似 Test Running 的當地語系化字串。
         /// </summary>
         internal static string f_testform_title {
             get {
@@ -100,7 +109,7 @@ namespace BlockEditorTest {
         }
         
         /// <summary>
-        ///   查詢類似 ファイル (&amp;F) 的當地語系化字串。
+        ///   查詢類似 &amp;File 的當地語系化字串。
         /// </summary>
         internal static string m_file {
             get {
@@ -109,7 +118,7 @@ namespace BlockEditorTest {
         }
         
         /// <summary>
-        ///   查詢類似 終了(&amp;E) 的當地語系化字串。
+        ///   查詢類似 &amp;Exit 的當地語系化字串。
         /// </summary>
         internal static string m_file_exit {
             get {
@@ -127,7 +136,7 @@ namespace BlockEditorTest {
         }
         
         /// <summary>
-        ///   查詢類似 新規作成 (&amp;N) 的當地語系化字串。
+        ///   查詢類似 &amp;New 的當地語系化字串。
         /// </summary>
         internal static string m_file_new {
             get {
@@ -136,7 +145,7 @@ namespace BlockEditorTest {
         }
         
         /// <summary>
-        ///   查詢類似 開く (&amp;O) 的當地語系化字串。
+        ///   查詢類似 &amp;Open... 的當地語系化字串。
         /// </summary>
         internal static string m_file_open {
             get {
@@ -145,7 +154,7 @@ namespace BlockEditorTest {
         }
         
         /// <summary>
-        ///   查詢類似 上書き保存 (&amp;S) 的當地語系化字串。
+        ///   查詢類似 &amp;Save 的當地語系化字串。
         /// </summary>
         internal static string m_file_save {
             get {
@@ -154,7 +163,7 @@ namespace BlockEditorTest {
         }
         
         /// <summary>
-        ///   查詢類似 名前を付けて保存 (&amp;A) 的當地語系化字串。
+        ///   查詢類似 Save &amp;As... 的當地語系化字串。
         /// </summary>
         internal static string m_file_saveas {
             get {
@@ -163,7 +172,25 @@ namespace BlockEditorTest {
         }
         
         /// <summary>
-        ///   查詢類似 テスト (&amp;T) 的當地語系化字串。
+        ///   查詢類似 &amp;Help 的當地語系化字串。
+        /// </summary>
+        internal static string m_help {
+            get {
+                return ResourceManager.GetString("m_help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 &amp;About 的當地語系化字串。
+        /// </summary>
+        internal static string m_help_about {
+            get {
+                return ResourceManager.GetString("m_help_about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 &amp;Test 的當地語系化字串。
         /// </summary>
         internal static string m_test {
             get {
@@ -172,7 +199,7 @@ namespace BlockEditorTest {
         }
         
         /// <summary>
-        ///   查詢類似 ランプログラム (&amp;R) 的當地語系化字串。
+        ///   查詢類似 &amp;Run... 的當地語系化字串。
         /// </summary>
         internal static string m_test_run {
             get {
@@ -181,7 +208,7 @@ namespace BlockEditorTest {
         }
         
         /// <summary>
-        ///   查詢類似 ターボモード (&amp;T) 的當地語系化字串。
+        ///   查詢類似 &amp;Turbo Mode 的當地語系化字串。
         /// </summary>
         internal static string m_test_turbo {
             get {

@@ -61,6 +61,32 @@ namespace BlockEditorTest.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 About Block Editor Test
+        ///A dirty JavaScript and visual programming testing app.
+        ///(C) Jeremy Lam (JLChnToZ), 2014.
+        ///License under Apache License 2.0
+        ///
+        ///Block Editor Test uses the following liberies:
+        ///-------------------------------------------------------------------------------
+        ///
+        ///Blockly
+        ///A visual programming editor
+        ///Copyright 2012 Google Inc.
+        ///https://blockly.googlecode.com/
+        ///License under Apache License 2.0
+        ///
+        ///Jurassic
+        ///A Javascript Compiler for .NET
+        ///Copyright (C) Paul Bartrum 2010
+        ///http://jurassic.code [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
+        /// </summary>
+        internal static string about {
+            get {
+                return ResourceManager.GetString("about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
         internal static System.Drawing.Bitmap cross {

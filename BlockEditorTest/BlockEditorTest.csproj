@@ -62,6 +62,12 @@
     <Compile Include="ExternalLifeSpanHandler.cs" />
     <Compile Include="FormControlObject.cs" />
     <Compile Include="FormExtensionFunctions.cs" />
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WebViewDialogHandler.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PromptDialog.resx">
       <DependentUpon>PromptDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +223,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="res\about.txt" />
     <Content Include="res\cross.png" />
     <EmbeddedResource Include="res\js\lang\en.js" />
     <EmbeddedResource Include="res\js\lang\zh_tw.js" />

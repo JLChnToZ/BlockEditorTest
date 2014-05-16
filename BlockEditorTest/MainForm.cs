@@ -1,10 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
-using System.Resources;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
 
@@ -36,19 +35,21 @@ namespace BlockEditorTest {
             Menu = new MainMenu();
             CreateMenu();
 
-            BrowserSettings browserSettings = new BrowserSettings();
-            browserSettings.HistoryDisabled = true;
-            browserSettings.FixedFontFamily = FontFamily.GenericMonospace.Name;
-            browserSettings.DefaultFontSize = 12;
-            browserSettings.DefaultFixedFontSize = 8;
-
-            webView = new WebView("http://internal/res/index.html", browserSettings);
-            webView.Dock = DockStyle.Fill;
-            webView.RequestHandler = new ManifestResourceHandler() {
-                culture = Thread.CurrentThread.CurrentCulture
+            BrowserSettings browserSettings = new BrowserSettings() {
+                HistoryDisabled = true,
+                FixedFontFamily = FontFamily.GenericMonospace.Name,
+                DefaultFontSize = 12,
+                DefaultFixedFontSize = 8
             };
-            webView.LifeSpanHandler = new ExternalLifeSpanHandler();
-            webView.JsDialogHandler = new WebViewDialogHandler(this);
+
+            webView = new WebView("http://internal/res/index.html", browserSettings) {
+                Dock = DockStyle.Fill,
+                RequestHandler = new ManifestResourceHandler() {
+                    culture = Thread.CurrentThread.CurrentCulture
+                },
+                LifeSpanHandler = new ExternalLifeSpanHandler(),
+                JsDialogHandler = new WebViewDialogHandler(this)
+            };
             webView.PropertyChanged += WebViewTitleChanged;
 
             this.Controls.Add(webView);
@@ -69,6 +70,7 @@ namespace BlockEditorTest {
             MenuItem fileMenu = new MenuItem(strings.m_file);
             fileMenu.MenuItems.Add(strings.m_file_new, (s, e) => NewFile());
             fileMenu.MenuItems.Add(strings.m_file_open, (s, e) => OpenFile());
+            fileMenu.MenuItems.Add(strings.m_file_import, (s, e) => OpenFile(false));
             fileMenu.MenuItems.Add(strings.m_file_save, (s, e) => {
                 if (FilePath.Length > 0)
                     SaveFile();
@@ -93,13 +95,19 @@ namespace BlockEditorTest {
             });
             testMenu.MenuItems.Add(strings.m_test_turbo, (s, e) => ((MenuItem)s).Checked = applyTurbo = !((MenuItem)s).Checked);
             Menu.MenuItems.Add(testMenu);
+
+            MenuItem helpMenu = new MenuItem(strings.m_help);
+            helpMenu.MenuItems.Add(strings.m_help_about, (s, e) => {
+                new AboutForm().ShowDialog(this);
+            });
+            Menu.MenuItems.Add(helpMenu);
         }
 
         void NewFile() {
             webView.ExecuteScript("resetAll();");
         }
 
-        void OpenFile() {
+        void OpenFile(bool clearFirst = true) {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = strings.f_filetypes;
             dlg.FileName = FilePath;
@@ -110,20 +118,20 @@ namespace BlockEditorTest {
                         fileType = FileType.JS;
                     else
                         fileType = FileType.XML;
-                    LoadFile();
+                    LoadFile(clearFirst);
                 } catch (Exception ex) {
                     showErrorDialog(ex.Message);
                 }
             }
         }
 
-        void LoadFile() {
+        void LoadFile(bool clearFirst = true) {
             string f = File.ReadAllText(FilePath);
             f = f.Replace("\\", "\\\\").Replace("\r", "\\r").Replace("\n", "\\n").Replace("\t", "\\t").Replace("\"", "\\\"").Replace("\'", "\\\'");
             if (fileType == FileType.JS)
-                webView.ExecuteScript(string.Format("resetAll();loadJSFile(\"{0}\");", f));
+                webView.ExecuteScript(string.Format((clearFirst ? "resetAll();" : "") + "loadJSFile(\"{0}\");", f));
             else
-                webView.ExecuteScript(string.Format("resetAll();loadXMLFile(\"{0}\");", f));
+                webView.ExecuteScript(string.Format((clearFirst ? "resetAll();" : "") + "loadXMLFile(\"{0}\");", f));
         }
 
         void SaveFile() {

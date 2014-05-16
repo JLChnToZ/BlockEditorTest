@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="f_about" xml:space="preserve">
+    <value>关于方块编程测试</value>
+  </data>
   <data name="f_filetypes" xml:space="preserve">
     <value>拼图格式 (*.blockly;*.xml)|*.blockly;*.xml|JavaScript 脚本 (*.js)|*.js|所有档案 (*.*)|*.*</value>
   </data>
@@ -152,6 +155,12 @@
   </data>
   <data name="m_file_saveas" xml:space="preserve">
     <value>另存为 (&amp;A)</value>
+  </data>
+  <data name="m_help" xml:space="preserve">
+    <value>说明 (&amp;H)</value>
+  </data>
+  <data name="m_help_about" xml:space="preserve">
+    <value>关于 (&amp;A)</value>
   </data>
   <data name="m_test" xml:space="preserve">
     <value>测试 (&amp;T)</value>
