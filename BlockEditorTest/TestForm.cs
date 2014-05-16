@@ -78,9 +78,9 @@ namespace BlockEditorTest {
                 popTurboString();
             } catch (JavaScriptException ex) {
                 popTurboString();
-                outputString(string.Format(strings.f_run_error, ex.Message, ex.LineNumber));
+                appendAndScroll(string.Format(strings.f_run_error, ex.Message, ex.LineNumber));
             } finally {
-                outputString(strings.f_run_ends);
+                appendAndScroll(strings.f_run_ends);
             }
         }
     }

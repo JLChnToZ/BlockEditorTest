@@ -51,9 +51,8 @@ namespace BlockEditorTest {
                 else if (_lower.EndsWith(".txt"))
                     MIME = "text/plain";
                 requestURL = requestURL.Substring(manifestProtocol.Length);
-                if (requestURL == "res/lang.js") {
+                if (requestURL == "res/lang.js")
                     requestURL = strings.script_path;
-                }
                 requestURL = requestURL.Replace('/', '.').Replace(' ', '_');
                 try {
                     requestResponse.RespondWith(asm.GetManifestResourceStream(asm.GetName().Name + "." + requestURL), MIME);
