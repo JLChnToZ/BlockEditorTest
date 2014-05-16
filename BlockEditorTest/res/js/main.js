@@ -13,6 +13,8 @@ if(Blockly && Blockly.JavaScript) { // Override for Custom JavaScript Framework
 
 $(function() {
   ace.config.set("workerPath", "js/ace");
+  $("#menu1").text(menu1);
+  $("#menu2").text(menu2);
   $("#tablist").tabs({
     beforeActivate: function(e, ui) {
       if(ui.newPanel.is("#scriptedit-tab")) {
@@ -32,7 +34,7 @@ $(function() {
       duration: 200
     }
   }).fadeIn("slow");
-  Blockly.inject($("#blockedit")[0], { path: './res/', toolbox: $("#toolbox")[0] });
+  Blockly.inject($("#blockedit")[0], { path: './res/', toolbox: blocklytoolbox });
   editor = ace.edit("scriptedit");
   var session = editor.getSession();
   editor.setTheme("ace/theme/tomorrow");

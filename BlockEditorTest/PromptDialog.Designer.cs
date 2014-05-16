@@ -38,9 +38,9 @@
             this.labelPrompt.AutoSize = true;
             this.labelPrompt.Location = new System.Drawing.Point(11, 20);
             this.labelPrompt.Name = "labelPrompt";
-            this.labelPrompt.Size = new System.Drawing.Size(65, 12);
+            this.labelPrompt.Size = new System.Drawing.Size(74, 12);
             this.labelPrompt.TabIndex = 0;
-            this.labelPrompt.Text = "對話內容。";
+            this.labelPrompt.Text = "{Place Holder}";
             this.labelPrompt.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_MouseDown);
             // 
             // textInput
@@ -130,7 +130,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "對話";
+            this.Text = "{Dialog}";
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
             this.ControlButtonFloatLayout.ResumeLayout(false);

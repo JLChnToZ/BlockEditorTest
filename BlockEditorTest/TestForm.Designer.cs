@@ -48,7 +48,6 @@
             this.Controls.Add(this.textOutput);
             this.Name = "TestForm";
             this.ShowIcon = false;
-            this.Text = "測試執行";
             this.ResumeLayout(false);
             this.PerformLayout();
 

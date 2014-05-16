@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.Reflection;
+using System.Threading;
+using System.IO;
 using CefSharp;
 
 namespace BlockEditorTest {
@@ -10,6 +13,8 @@ namespace BlockEditorTest {
         public const string manifestProtocol = "http://internal/";
 
         public EventHandler<ContentReceivedEventArgs> PostContentReceived;
+
+        public CultureInfo culture { get; set; } 
 
         public bool GetAuthCredentials(IWebBrowser browser, bool isProxy, string host, int port,
             string realm, string scheme, ref string username, ref string password) {
@@ -46,6 +51,9 @@ namespace BlockEditorTest {
                 else if (_lower.EndsWith(".txt"))
                     MIME = "text/plain";
                 requestURL = requestURL.Substring(manifestProtocol.Length);
+                if (requestURL == "res/lang.js") {
+                    requestURL = strings.script_path;
+                }
                 requestURL = requestURL.Replace('/', '.').Replace(' ', '_');
                 try {
                     requestResponse.RespondWith(asm.GetManifestResourceStream(asm.GetName().Name + "." + requestURL), MIME);

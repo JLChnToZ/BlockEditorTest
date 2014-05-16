@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Resources;
 using System.IO;
 using System.Threading;
 using CefSharp;
@@ -36,13 +37,16 @@ namespace BlockEditorTest {
             CreateMenu();
 
             BrowserSettings browserSettings = new BrowserSettings();
+            browserSettings.HistoryDisabled = true;
             browserSettings.FixedFontFamily = FontFamily.GenericMonospace.Name;
             browserSettings.DefaultFontSize = 12;
             browserSettings.DefaultFixedFontSize = 8;
 
             webView = new WebView("http://internal/res/index.html", browserSettings);
             webView.Dock = DockStyle.Fill;
-            webView.RequestHandler = new ManifestResourceHandler();
+            webView.RequestHandler = new ManifestResourceHandler() {
+                culture = Thread.CurrentThread.CurrentCulture
+            };
             webView.LifeSpanHandler = new ExternalLifeSpanHandler();
             webView.JsDialogHandler = new WebViewDialogHandler(this);
             webView.PropertyChanged += WebViewTitleChanged;
@@ -62,24 +66,24 @@ namespace BlockEditorTest {
         }
 
         void CreateMenu() {
-            MenuItem fileMenu = new MenuItem("檔案 (&F)");
-            fileMenu.MenuItems.Add("新增 (&N)", (s, e) => NewFile());
-            fileMenu.MenuItems.Add("開啟 (&O)", (s, e) => OpenFile());
-            fileMenu.MenuItems.Add("儲存 (&S)", (s, e) => {
+            MenuItem fileMenu = new MenuItem(strings.m_file);
+            fileMenu.MenuItems.Add(strings.m_file_new, (s, e) => NewFile());
+            fileMenu.MenuItems.Add(strings.m_file_open, (s, e) => OpenFile());
+            fileMenu.MenuItems.Add(strings.m_file_save, (s, e) => {
                 if (FilePath.Length > 0)
                     SaveFile();
                 else
                     SaveAs(s, e);
             });
-            fileMenu.MenuItems.Add("另存為 (&A)", SaveAs);
+            fileMenu.MenuItems.Add(strings.m_file_saveas, SaveAs);
             fileMenu.MenuItems.Add("-");
-            fileMenu.MenuItems.Add("離開 (&E)", (s, e) => {
+            fileMenu.MenuItems.Add(strings.m_file_exit, (s, e) => {
                 Close();
             });
             Menu.MenuItems.Add(fileMenu);
 
-            MenuItem testMenu = new MenuItem("測試 (&T)");
-            testMenu.MenuItems.Add("執行 (&R)", (s, e) => {
+            MenuItem testMenu = new MenuItem(strings.m_test);
+            testMenu.MenuItems.Add(strings.m_test_run, (s, e) => {
                 prepareSaveFile(new Action(() => {
                     TestForm testing = new TestForm();
                     testing.Show();
@@ -87,7 +91,7 @@ namespace BlockEditorTest {
                     testing.RunScript(OutputData(FileType.JS));
                 }));
             });
-            testMenu.MenuItems.Add("加速模式 (&T)", (s, e) => ((MenuItem)s).Checked = applyTurbo = !((MenuItem)s).Checked);
+            testMenu.MenuItems.Add(strings.m_test_turbo, (s, e) => ((MenuItem)s).Checked = applyTurbo = !((MenuItem)s).Checked);
             Menu.MenuItems.Add(testMenu);
         }
 
@@ -97,7 +101,7 @@ namespace BlockEditorTest {
 
         void OpenFile() {
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "拼圖格式 (*.blockly;*.xml)|*.blockly;*.xml|JavaScript 腳本 (*.js)|*.js|所有檔案 (*.*)|*.*";
+            dlg.Filter = strings.f_filetypes;
             dlg.FileName = FilePath;
             if (dlg.ShowDialog() == DialogResult.OK) {
                 try {
@@ -140,7 +144,7 @@ namespace BlockEditorTest {
 
         void SaveAs(object sender, EventArgs e) {
             SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Filter = "拼圖格式 (*.blockly;*.xml)|*.blockly;*.xml|JavaScript 腳本 (*.js)|*.js|所有檔案 (*.*)|*.*";
+            dlg.Filter = strings.f_filetypes;
             dlg.FileName = FilePath;
             if (dlg.ShowDialog() == DialogResult.OK) {
                 FilePath = dlg.FileName;

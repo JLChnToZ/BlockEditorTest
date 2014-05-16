@@ -27,6 +27,8 @@ namespace BlockEditorTest {
         public TestForm() {
             InitializeComponent();
 
+            Text = strings.f_testform_title;
+
             textOutput.Font = new Font(FontFamily.GenericMonospace, 12F);
             textOutput.MaxLength = int.MaxValue;
 
@@ -76,9 +78,9 @@ namespace BlockEditorTest {
                 popTurboString();
             } catch (JavaScriptException ex) {
                 popTurboString();
-                outputString(string.Format("\r\n於第{1}行發生錯誤：{0}", ex.Message, ex.LineNumber));
+                outputString(string.Format(strings.f_run_error, ex.Message, ex.LineNumber));
             } finally {
-                outputString("\r\n程式結束。\r\n");
+                outputString(strings.f_run_ends);
             }
         }
     }
