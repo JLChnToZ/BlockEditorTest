@@ -108,6 +108,7 @@
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="strings.zh-CHS.resx" />
+    <EmbeddedResource Include="strings.ja-JP.resx" />
     <None Include="locales\en-US.pak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -217,6 +218,7 @@
     <EmbeddedResource Include="res\js\lang\en.js" />
     <EmbeddedResource Include="res\js\lang\zh_tw.js" />
     <EmbeddedResource Include="res\js\lang\zh_cn.js" />
+    <EmbeddedResource Include="res\js\lang\jp.js" />
     <Content Include="res\tick.png" />
   </ItemGroup>
   <ItemGroup />
