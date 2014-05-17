@@ -1,6 +1,6 @@
 About Block Editor Test
 A dirty JavaScript and visual programming testing app.
-(C) Jeremy Lam (JLChnToZ), 2014.
+Copyright (C) Jeremy Lam (JLChnToZ), 2014.
 License under Apache License 2.0
 
 Block Editor Test uses the following liberies:
@@ -8,18 +8,31 @@ Block Editor Test uses the following liberies:
 
 Blockly
 A visual programming editor
-Copyright 2012 Google Inc.
 https://blockly.googlecode.com/
+Copyright (C) 2012 Google Inc.
 License under Apache License 2.0
+
+Ace
+The High Performance Code Editor for the Web
+http://ace.c9.io/
+Copyright (C) 2010, Ajax.org B.V. All rights reserved.
+License under BSD-Style License
 
 Jurassic
 A Javascript Compiler for .NET
-Copyright (C) Paul Bartrum 2010
 http://jurassic.codeplex.com/
+Copyright (C) Paul Bartrum 2010
 License under Microsoft Public License (Ms-PL)
 
 CefSharp
 .NET (WPF and Windows Forms) bindings for the Chromium Embedded Framework
-Copyright (C) 2010-2014 The CefSharp Authors
 https://github.com/cefsharp/CefSharp
+Copyright (C) 2010-2014 The CefSharp Authors
+License under BSD-Style License
+
+CEF
+A simple framework for embedding Chromium-based browsers in other applications.
+https://chromiumembedded.googlecode.com/
+Copyright (c) 2008-2011 Marshall A. Greenblatt. Portions
+Copyright (c) 2006-2009 Google Inc. All rights reserved.
 License under BSD-Style License
