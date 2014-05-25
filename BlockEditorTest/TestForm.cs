@@ -49,6 +49,7 @@ namespace BlockEditorTest {
                 dlg.messageBoxIcon = MessageBoxIcon.Question;
                 return dlg.ShowDialog(this) == DialogResult.OK ? dlg.Value : d;
             }));
+            FileIOFunctions.register(_engine, this);
         }
 
         private void outputString(string s) {

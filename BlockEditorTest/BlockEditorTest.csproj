@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExternalLifeSpanHandler.cs" />
+    <Compile Include="FileIOFunctions.cs" />
     <Compile Include="FormControlObject.cs" />
     <Compile Include="FormExtensionFunctions.cs" />
     <Compile Include="AboutForm.cs">
